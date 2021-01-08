@@ -161,6 +161,7 @@ class ViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        //一定要算準行高
         tableView.rowHeight = 110
         
         tableView.register(FoodCell.self, forCellReuseIdentifier: FoodCell.reuseId)
