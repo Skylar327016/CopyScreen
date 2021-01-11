@@ -169,6 +169,7 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
         tableView.separatorStyle = .none
+        
     }
     
     
@@ -207,4 +208,37 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return header
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        //建立 加到最愛 選項
+        let addFavorites = UIContextualAction(style: .normal, title: "加到最愛") { (action, view, completionHandler) in
+            
+            let controller = UIAlertController(title: "已加到最愛", message: nil, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "Ok", style: .default))
+            DispatchQueue.main.async {
+                self.present(controller, animated: true)
+            }
+            
+        }
+        
+        //建立 刪除 選項
+        let deleteRow = UIContextualAction(style: .destructive, title: "刪除") { (action, view, completionHandler) in
+            
+            self.foodGroup.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            completionHandler(true)
+        }
+        
+        //初始化 UISwipeActionsConfiguration 並回傳
+        return UISwipeActionsConfiguration(actions: [addFavorites, deleteRow])
+    }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//        guard editingStyle == .delete else { return }
+//        self.foodGroup.remove(at: indexPath.row)
+//        tableView.deleteRows(at: [indexPath], with: .left)
+//    }
+    
+
 }

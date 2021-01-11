@@ -19,6 +19,7 @@ class FoodCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
         selectionStyle = .none
+        
     }
     
     
