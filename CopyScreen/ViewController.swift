@@ -218,7 +218,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             DispatchQueue.main.async {
                 self.present(controller, animated: true)
             }
-            
+            completionHandler(true)
         }
         
         //建立 刪除 選項
